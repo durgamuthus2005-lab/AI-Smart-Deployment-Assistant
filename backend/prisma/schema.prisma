@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Deployment {
+  id             Int      @id @default(autoincrement())
+  version        String
+  status         String
+  environment    String
+  commitHash     String?
+  branch         String?
+  dockerImage    String?
+  cloudProvider  String?
+  aiSummary      String?
+
+  deployedAt     DateTime @default(now())
+  createdAt      DateTime @default(now())
+}
