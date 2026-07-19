@@ -20,6 +20,33 @@ function DeploymentTable({ deployments }) {
     }
   };
 
+
+  const handleAnalyze = async (deployment) => {
+  try {
+    const log = `
+Deployment Version : ${deployment.version}
+Status             : ${deployment.status}
+Environment        : ${deployment.environment}
+Branch             : ${deployment.branch}
+Cloud Provider     : ${deployment.cloudProvider}
+`;
+
+    const response = await api.post("/analysis", {
+  deploymentId: deployment.id,
+  log,
+});
+
+    alert("AI Analysis Completed Successfully!");
+
+    console.log(response.data);
+
+  } catch (error) {
+    console.error(error);
+    alert("AI Analysis Failed");
+  }
+};
+
+
   return (
     <div className="mt-8 bg-slate-900 rounded-xl shadow-lg overflow-hidden">
       <table className="w-full">
@@ -86,6 +113,14 @@ function DeploymentTable({ deployments }) {
   >
     Delete
   </button>
+
+  <button
+  onClick={() => handleAnalyze(deployment)}
+  className="bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded"
+>
+  Analyze
+</button>
+
 </td>
             </tr>
           ))}
