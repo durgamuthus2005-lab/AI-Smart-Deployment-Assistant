@@ -21,3 +21,13 @@ model Deployment {
   deployedAt     DateTime @default(now())
   createdAt      DateTime @default(now())
 }
+
+model Analysis {
+  id        Int      @id @default(autoincrement())
+
+  log       String   @db.Text
+  analysis  String   @db.Text
+  severity  String
+
+  createdAt DateTime @default(now())
+}

@@ -45,13 +45,13 @@ function DeploymentTable({ deployments }) {
               <td className="p-4">
   <span
     className={`px-3 py-1 rounded-full text-sm font-semibold ${
-      deployment.status === "Success"
-        ? "bg-green-500/20 text-green-400"
-        : deployment.status === "Failed"
-        ? "bg-red-500/20 text-red-400"
-        : deployment.status === "Running"
-        ? "bg-yellow-500/20 text-yellow-400"
-        : "bg-slate-500/20 text-slate-300"
+      deployment.status.toLowerCase() === "success"
+        ? "bg-green-500 text-white"
+        : deployment.status.toLowerCase() === "failed"
+        ? "bg-red-500 text-white"
+        : deployment.status.toLowerCase() === "running"
+        ? "bg-yellow-400 text-black"
+        : "bg-gray-500 text-white"
     }`}
   >
     {deployment.status}

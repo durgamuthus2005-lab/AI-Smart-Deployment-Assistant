@@ -3,6 +3,8 @@ const cors = require("cors");
 const statusRoutes = require("./routes/statusRoutes");
 const deploymentRoutes = require("./routes/deploymentRoutes");
 const dockerRoutes = require("./routes/dockerRoutes");
+const aiRoutes = require("./routes/aiRoutes");
+const analysisRoutes = require("./routes/analysisRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -21,6 +23,11 @@ const PORT = process.env.PORT || 5000;
 app.use("/api/status", statusRoutes);
 app.use("/api/deployments", deploymentRoutes);
 app.use("/api/docker", dockerRoutes);
+app.use("/api/ai", aiRoutes);
+app.use("/api/analysis", analysisRoutes);
+
+
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
